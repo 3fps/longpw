@@ -135,9 +135,10 @@ function calc(phrase, username, length, allowSpecial) {
 	var special = './,[]{};:!@#$%^&*()';
 	
 	var pw = '';
+	var pass = phrase;
 	
 	while (pw.length < length) {
-		var sha = SHA256(phrase + username + length.toString() + allowSpecial.toString());
+		var sha = SHA256(pass + username + length.toString() + allowSpecial.toString());
 		for (i = 0; i < 8; i++)
 			sha[i] = Math.abs(sha[i]);
 					
@@ -159,7 +160,7 @@ function calc(phrase, username, length, allowSpecial) {
 			pw += digits.charAt(sha[7] % digits.length);
 		}
 		
-		phrase = binb2hex(SHA256(pw));
+		pass += binb2hex(SHA256(pw));
 	}
 	
 	return pw.substring(0, length);

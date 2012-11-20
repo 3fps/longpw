@@ -3,60 +3,111 @@
 <html>
 
 <head>
-<title>Long Password</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="calc.js"></script>
-<script type="text/javascript">
-$(function() {
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+
+	<title>Long Password</title>
 	
-	function calculatePw() {
-		var longPhrase = $('#longPhrase').val();		
-		var username = $('#username').val();
-		var length = parseInt($('#length').val());
-		var allowSpecial = $('#allowSpecial').is(':checked');
-		
-		if (longPhrase.length != 0 && username.length != 0)
-			$('#password').val(calc(longPhrase, username, length, allowSpecial));
-	}
-	
-	$('#longPhrase').keyup(calculatePw);
-	$('#username').keyup(calculatePw);
-	$('#length').change(calculatePw);
-	$('#allowSpecial').change(calculatePw);	
-});
-</script>
+	<link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
+	<link rel="stylesheet" href="foundation/stylesheets/app.css">
+
+	<script src="foundation/javascripts/modernizr.foundation.js"></script>
+
+	<style>
+		#header {
+			border-bottom: solid 1px #CCC;
+			margin-bottom: 24px;
+		}
+	</style>
 </head>
 
-<body style="width:600px; margin: 20px auto 20px auto;">
+<body class="off-canvas">
+	<header id="header" class="row">
+		<div class="eight columns">
+			<h1>Long Password</h1>
+			<h4 class="subheader">one phrase. zero storage</h4>
+		</div>
+	</header>
 
-<div>Long phrase (recommend at least 20 characters)</div>
-<div><input type="text" id="longPhrase" style="width: 300px"></div>
-<br>
+	<div class="row">		
+		<div class="six columns">
+			<form class="custom">
+				<label for="longPhrase">Meaning phrase (recommend at least 20 characters)</label>
+				<input type="text" id="longPhrase" class="twelve">
+				<label for="username">Username (e.g. sluu99@twitter)</label>
+				<input type="text" id="username" class="eight">			
+				<div class="row" style="margin-bottom:12px;">
+					<div class="six columns">
+						<label for="length">Password length</label>
+						<select id="length">
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14" selected>14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+						</select>
+					</div>
+					<div class="six columns">
+						<label for="allowSpecialChar">Allow special characters</label>
+						<input type="checkbox" id="allowSpecial" checked="checked">
+					</div>
+				</div>
+				<label>Your password</label>
+				<input type="text" id="password" class="eight">
+			</form>
+		</div>
 
-<div>Username (e.g. sluu99@github)</div>
-<div><input type="text" id="username"></div>
-<br>
+		<div class="six columns">
+			<p style="font-weight:600">
+				Never have to rely on another application to store you passwords again! 
+				Just remember a <em>meaningful phrase</em> and have a different secured password computed for every service you use.
+			</p>
+			<p>
+				Simply compute a password, copy it for your first login and have the service remember your subsequent logins.
+				Because the password is <strong>computer</strong> and not <strike>randomly generated</strike>, it's always the same as long
+				as your passphrase and other input parameters are the same.
+			</p>
+		</div>
+	</div>
 
-<div>Length: 
-	<select id="length">
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-		<option value="17">17</option>
-		<option value="18">18</option>
-		<option value="19">19</option>
-		<option value="20">20</option>
-	</select>
-</div>
-<br>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="foundation/javascripts/foundation.min.js"></script>	
+	<script src="foundation/javascripts/app.js"></script>
 
-<div>Allow special chars: <input type="checkbox" id="allowSpecial" checked="checked"></div>
-<br>
+	<script src="calc.js"></script>
+	
+	<script type="text/javascript">
+	$(function() {
+		
+		function calculatePw() {
+			var longPhrase = $('#longPhrase').val();
+			var username = $('#username').val();
+			var length = parseInt($('#length').val());
+			var allowSpecial = $('#allowSpecial').is(':checked');
 
-<div>You password</div>
-<div><input type="text" id="password" style="width:200px"></div>
+			if (longPhrase.length != 0) 
+				$('#password').val(calc(longPhrase, username, length, allowSpecial));
+
+			// flag UI elements
+			if (longPhrase.length < 20) $('#longPhrase').addClass('error');
+			else $('#longPhrase').removeClass('error');
+
+			if (username.length == 0) $('#username').addClass('error');
+			else $('#username').removeClass('error');
+		}
+		
+		$('#longPhrase').keyup(calculatePw);
+		$('#username').keyup(calculatePw);
+		$('#length').change(calculatePw);
+		$('#allowSpecial').change(calculatePw);	
+	});
+	</script>
 
 </body>
 </html>
