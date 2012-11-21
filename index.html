@@ -33,21 +33,18 @@
 
 	<div class="row">		
 		<div class="six columns">
-			<form class="custom">
-				<label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
+			<form class="custom">				
 				<div class="row">
-					<div class="twelve columns">
-						<div class="row collapse">
-							<div class="eleven mobile-three columns">
-								<input type="password" id="longPhrase">
-							</div>
-							<div class="one mobile-one columns">
-								<a class="button expand postfix"><i class="foundicon-eyeball" id="tooglePhrase" style="vertical-align:top"></i></a>
-							</div>
-						</div>
+					<div class="ten columns">
+						<label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
+						<input type="password" id="longPhrase">						
+					</div>
+					<div class="two columns">
+						<label for="tooglePhrase">Visible</label>
+						<input type="checkbox" id="tooglePhrase">
 					</div>
 				</div>				
-				<div class="row" style="margin-bottom:12px;">
+				<div class="row">
 					<div class="six columns">
 						<label for="username">Username (e.g. sluu99)</label>
 						<input type="text" id="username">
@@ -57,7 +54,7 @@
 						<input type="text" id="service">
 					</div>
 				</div>				
-				<div class="row" style="margin-bottom:12px;">
+				<div class="row">
 					<div class="six columns">
 						<label for="length">Password length</label>
 						<select id="length">
@@ -174,7 +171,7 @@
 		$('#length').change(calculatePw);
 		$('#allowSpecial').change(calculatePw);			
 		$('#longPhrase').keyup(calculatePw);
-		$('#tooglePhrase').click(toogleVisibility);
+		$('#tooglePhrase').change(toogleVisibility);
 	});
 	</script>
 
