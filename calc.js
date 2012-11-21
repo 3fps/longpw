@@ -140,7 +140,7 @@ function calc(phrase, username, service, length, allowSpecial) {
 
 		var sha = SHA256(pass + shaPad);
 		
-		sha[0] ^= sha[1] ^ sha[2] ^ sha[3] ^ sha[4] ^ sha[5] ^ sha[6] ^ sha[7]
+		sha[0] ^= sha[1] ^ sha[2] ^ sha[3] ^ sha[4] ^ sha[5] ^ sha[6] ^ sha[7];
 		sha[0] = Math.abs(sha[0]);
 
 		pw += tab[tabIndex].charAt(sha[0] % tab[tabIndex].length);
