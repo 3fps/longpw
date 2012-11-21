@@ -164,7 +164,7 @@
 				rep = $('<input id="longPhrase" type="text">');
 			else
 				rep = $('<input id="longPhrase" type="password">');
-			rep.val(input.val()).insertBefore(input);
+			rep.val(input.val()).keyup(calculatePw).insertBefore(input);
 			input.remove();
 			input = rep;
 		}
