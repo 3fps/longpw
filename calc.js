@@ -129,12 +129,15 @@ function binb2hex (binarray) {
 // calc calculates passwords based on the long phrase, user name, and password length
 function calc(phrase, username, service, length, allowSpecial) {
 	
-	var tab = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789', './,[]{};:!@#$%^&*()'];
-	var maxTab = allowSpecial? 3 : 2;
+	var tabS = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789', './,[]{};:!@#$%^&*()'];
+  var tabNS = tabS.slice(0,tabS.length-1);
+  var tab = allowSpecial? tabS : tabNS;
+
 	var shaPad = username + service + length.toString() + allowSpecial.toString();	
 	var pass = phrase;	
-	var tabIndex = 0;
+	var tabIndex;
 	var pw = '';
+
 
 	while (pw.length < length) {
 
@@ -143,9 +146,8 @@ function calc(phrase, username, service, length, allowSpecial) {
 		sha[0] ^= sha[1] ^ sha[2] ^ sha[3] ^ sha[4] ^ sha[5] ^ sha[6] ^ sha[7];
 		sha[0] = Math.abs(sha[0]);
 
+    tabIndex = sha[0] % tab.length;
 		pw += tab[tabIndex].charAt(sha[0] % tab[tabIndex].length);
-		tabIndex++;
-		if (tabIndex > maxTab) tabIndex = 0;
 		
 		pass += binb2hex(SHA256(pw));
 	}
