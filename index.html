@@ -3,195 +3,192 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-	<!-- Set the viewport width to device width for mobile -->
-	<meta name="viewport" content="width=device-width" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
 
-	<title>Long Password</title>
-	
-	<link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
-	<link rel="stylesheet" href="foundation/stylesheets/app.css">
-	<link rel="stylesheet" href="foundation/stylesheets/accessibility_foundicons.css">
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin">
-	<link rel="stylesheet" href="application.css">
+    <title>Long Password</title>
+    
+    <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
+    <link rel="stylesheet" href="foundation/stylesheets/app.css">
+    <link rel="stylesheet" href="foundation/stylesheets/accessibility_foundicons.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin">
+    <link rel="stylesheet" href="application.css">
 
-	<script src="foundation/javascripts/modernizr.foundation.js"></script>
+    <script src="foundation/javascripts/modernizr.foundation.js"></script>
 
-	
+    
 </head>
 
 <body class="off-canvas">
-	<header>
-		<div class="row">
-			<div class="twelve columns">
-				<h1>Long Password</h1>
-				<h4>one phrase. zero storage</h4>
-			</div>
-		</div>
-	</header>
+    <header>
+        <div class="row">
+            <div class="twelve columns">
+                <h1>Long Password</h1>
+                <h4>one phrase. zero storage</h4>
+            </div>
+        </div>
+    </header>
 
-	<div class="row">		
-		<div class="six columns">
-			<form class="custom">				
-				<div class="row">
-					<div class="ten columns">
-						<label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
-						<input type="password" id="longPhrase">						
-					</div>
-					<div class="two columns">
-						<label for="tooglePhrase">Visible</label>
-						<input type="checkbox" id="tooglePhrase">
-					</div>
-				</div>				
-				<div class="row">
-					<div class="six columns">
-						<label for="username">Username (e.g. sluu99)</label>
-						<input type="text" id="username">
-					</div>
-					<div class="six columns">
-						<label for="username">Service (e.g. twitter)</label>
-						<input type="text" id="service">
-					</div>
-				</div>				
-				<div class="row">
-					<div class="six columns">
-						<label for="length">Password length</label>
-						<select id="length">
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14" selected>14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-						</select>
-					</div>
-					<div class="six columns">
-						<label for="allowSpecialChar">Allow special characters</label>
-						<input type="checkbox" id="allowSpecial" checked="checked">
-					</div>
-				</div>
-				<label>Your password</label>
-				<input type="text" id="password" class="eight" readonly onclick="javascript:this.select();">
-			</form>
-		</div>
+    <div class="row">       
+        <div class="six columns">
+            <form class="custom">               
+                <div class="row">
+                    <div class="ten columns">
+                        <label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
+                        <input type="password" id="longPhrase">                     
+                    </div>
+                    <div class="two columns">
+                        <label for="tooglePhrase">Visible</label>
+                        <input type="checkbox" id="tooglePhrase">
+                    </div>
+                </div>              
+                <div class="row">
+                    <div class="six columns">
+                        <label for="username">Username (e.g. sluu99)</label>
+                        <input type="text" id="username">
+                    </div>
+                    <div class="six columns">
+                        <label for="username">Service (e.g. twitter)</label>
+                        <input type="text" id="service">
+                    </div>
+                </div>              
+                <div class="row">
+                    <div class="six columns">
+                        <label for="length">Password length</label>
+                        <select id="length">
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14" selected>14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <div class="six columns">
+                        <label for="allowSpecialChar">Allow special characters</label>
+                        <input type="checkbox" id="allowSpecial" checked="checked">
+                    </div>
+                </div>
+                <label>Your password</label>
+                <input type="text" id="password" class="eight" readonly onclick="javascript:this.select();">
+            </form>
+        </div>
 
-		<div class="six columns">
-			<p style="color:red;">
-				This is a proof of concept. Algorithm is subject to change in the near future.
-			</p>
-			<p style="font-weight:600">
-				Never need another application to store you passwords again! 
-				Just remember a <em>meaningful phrase</em> and have a different secure password computed for every service you use.
-			</p>
-			<ol>
-				<li>Compute a password.</li>
-				<li>Sign in to your service (and select <em>&quot;Remember Me&quot;</em> on your personal computer)</li>
-				<li>Only come back here when you need it again.</li>
-			</ol>
-		</div>
-	</div>
+        <div class="six columns">
+            <p style="color:red;">
+                This is a proof of concept. Algorithm is subject to change in the near future.
+            </p>
+            <p style="font-weight:600">
+                Never need another application to store you passwords again! 
+                Just remember a <em>meaningful phrase</em> and have a different secure password computed for every service you use.
+            </p>
+            <ol>
+                <li>Compute a password.</li>
+                <li>Sign in to your service (and select <em>&quot;Remember Me&quot;</em> on your personal computer)</li>
+                <li>Only come back here when you need it again.</li>
+            </ol>
+        </div>
+    </div>
 
-	<div class="row" style="margin-top:50px">
-		<div class="four columns">
-			<h3>Why?</h3>
-			<p style="text-align:justify">
-				This tool discourages the habit of using the same password for multiple online services
-				by providing an easier way to manage many different passwords.
-			</p>
-		</div>
-		<div class="four columns">
-			<h3>How?</h3>
-			<p style="text-align:justify">
-				By computing a secure password based on a meaningful memorizable phrase for each service,
-				users won't have to remember the different passwords.
-			</p>
-		</div>
-		<div class="four columns">
-			<h3>Is it secure?</h3>
-			<p style="text-align:justify">
-				Using the computed password should not affect your security as long as you <em>keep the phrase to yourself.</em>
-				Even if one of the services you use got compromised, it's very difficult to trace back to the phrase.
-			</p>
-		</div>
-	</div>
+    <div class="row" style="margin-top:50px">
+        <div class="four columns">
+            <h3>Why?</h3>
+            <p style="text-align:justify">
+                This tool discourages the habit of using the same password for multiple online services
+                by providing an easier way to manage many different passwords.
+            </p>
+        </div>
+        <div class="four columns">
+            <h3>How?</h3>
+            <p style="text-align:justify">
+                By computing a secure password based on a meaningful memorizable phrase for each service,
+                users won't have to remember the different passwords.
+            </p>
+        </div>
+        <div class="four columns">
+            <h3>Is it secure?</h3>
+            <p style="text-align:justify">
+                Using the computed password should not affect your security as long as you <em>keep the phrase to yourself.</em>
+                Even if one of the services you use got compromised, it's very difficult to trace back to the phrase.
+            </p>
+        </div>
+    </div>
 
-	<footer class="row">
-		<div class="seven columns">
-			Disclaimer: Please use at your own risk. <br> The author is not responsible for any loss you might face.
-		</div>
-		<div class="five columns" style="text-align: right;">
-			<a href="http://github.com/3fps">3FPS</a>. Feedback is welcome at <a href="http://twitter.com/sluu99">@sluu99</a>.
-		</div>
-	</footer>
+    <footer class="row">
+        <div class="seven columns">
+            Disclaimer: Please use at your own risk. <br> The author is not responsible for any loss you might face.
+        </div>
+        <div class="five columns" style="text-align: right;">
+            <a href="http://github.com/3fps">3FPS</a>. Feedback is welcome at <a href="http://twitter.com/sluu99">@sluu99</a>.
+        </div>
+    </footer>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="foundation/javascripts/foundation.min.js"></script>	
-	<script src="foundation/javascripts/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="foundation/javascripts/foundation.min.js"></script>    
+    <script src="foundation/javascripts/app.js"></script>
 
-	<script src="calc.js"></script>
-	
-	<script type="text/javascript">
-	$(function() {
-		
-		function calculatePw() {
-			var longPhrase = $('#longPhrase').val();
-			var username = $('#username').val();
-			var service = $('#service').val();
-			var length = parseInt($('#length').val());
-			var allowSpecial = $('#allowSpecial').is(':checked');
+    <script src="calc.js"></script>
+    
+    <script type="text/javascript">
+    $(function() {
+        
+        function calculatePw() {
+            var longPhrase = $('#longPhrase').val();
+            var username = $('#username').val();
+            var service = $('#service').val();
+            var length = parseInt($('#length').val());
+            var allowSpecial = $('#allowSpecial').is(':checked');
 
-			if (longPhrase.length != 0) 
-				$('#password').val(calc(longPhrase, username, service, length, allowSpecial));
+            if (longPhrase.length != 0) 
+                $('#password').val(calc(longPhrase, username, service, length, allowSpecial));
 
-			// flag UI elements
-			if (longPhrase.length < 20) $('#longPhrase').addClass('error');
-			else $('#longPhrase').removeClass('error');
-			if (username.length == 0) $('#username').addClass('error');
-			else $('#username').removeClass('error');
-			if (service.length == 0) $('#service').addClass('error');
-			else $('#service').removeClass('error');
-		}
+            // flag UI elements
+            if (longPhrase.length < 20) $('#longPhrase').addClass('error');
+            else $('#longPhrase').removeClass('error');
+            if (username.length == 0) $('#username').addClass('error');
+            else $('#username').removeClass('error');
+            if (service.length == 0) $('#service').addClass('error');
+            else $('#service').removeClass('error');
+        }
 
-		function toogleVisibility() {
-			var input = $('#longPhrase');
-			var rep;
-			if (input.attr('type') === 'password')
-				rep = $('<input id="longPhrase" type="text">');
-			else
-				rep = $('<input id="longPhrase" type="password">');
-			rep.val(input.val()).keyup(calculatePw).insertBefore(input);
-			input.remove();
-			input = rep;
-		}
-				
-		$('#username').keyup(calculatePw);
-		$('#service').keyup(calculatePw);
-		$('#length').change(calculatePw);
-		$('#allowSpecial').change(calculatePw);			
-		$('#longPhrase').keyup(calculatePw);
-		$('#tooglePhrase').change(toogleVisibility);
-	});
-	</script>
+        function toogleVisibility() {
+            var input = $('#longPhrase');
+            var rep;
+            if (input.attr('type') === 'password')
+                rep = $('<input id="longPhrase" type="text">');
+            else
+                rep = $('<input id="longPhrase" type="password">');
+            rep.val(input.val()).keyup(calculatePw).insertBefore(input);
+            input.remove();
+            input = rep;
+        }
+                
+        $('#username').keyup(calculatePw);
+        $('#service').keyup(calculatePw);
+        $('#length').change(calculatePw);
+        $('#allowSpecial').change(calculatePw);         
+        $('#longPhrase').keyup(calculatePw);
+        $('#tooglePhrase').change(toogleVisibility);
+    });
 
-	<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-519963-18']);
+    _gaq.push(['_trackPageview']);
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-519963-18']);
-	  _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+    </script>
 
-	</script>
-
-	<a href="https://github.com/3fps/longpw" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/3fps/longpw" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 </body>
 </html>
