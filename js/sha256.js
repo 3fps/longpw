@@ -109,7 +109,8 @@ function SHA256(s){
  
         return utftext;
     }
-     
+
+
     s = Utf8Encode(s);
     return core_sha256(str2binb(s), s.length * chrsz);
  
@@ -124,33 +125,4 @@ function binb2hex (binarray) {
         hexTab.charAt((binarray[i>>2] >> ((3 - i%4)*8  )) & 0xF);
     }
     return str;
-}
-
-// calc calculates passwords based on the long phrase, user name, and password length
-function calc(phrase, username, service, length, allowSpecial) {
-    
-    var tabS = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789', './,[]{};:!@#$%^&*()'];
-    var tabNS = tabS.slice(0,tabS.length-1);
-    var tab = allowSpecial? tabS : tabNS;
-
-    var shaPad = username + service + length.toString() + allowSpecial.toString();  
-    var pass = phrase;  
-    var tabIndex;
-    var pw = '';
-
-
-    while (pw.length < length) {
-
-        var sha = SHA256(pass + shaPad);
-        
-        sha[0] ^= sha[1] ^ sha[2] ^ sha[3] ^ sha[4] ^ sha[5] ^ sha[6] ^ sha[7];
-        sha[0] = Math.abs(sha[0]);
-
-    tabIndex = sha[0] % tab.length;
-        pw += tab[tabIndex].charAt(sha[0] % tab[tabIndex].length);
-        
-        pass += binb2hex(SHA256(pw));
-    }
-    
-    return pw;
 }
