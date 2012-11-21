@@ -12,28 +12,22 @@
 	
 	<link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
 	<link rel="stylesheet" href="foundation/stylesheets/app.css">
+	<link rel="stylesheet" href="foundation/stylesheets/accessibility_foundicons.css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin">
+	<link rel="stylesheet" href="application.css">
 
 	<script src="foundation/javascripts/modernizr.foundation.js"></script>
 
-	<style>
-		#header {
-			border-bottom: solid 1px #CCC;
-			margin-bottom: 24px;
-		}
-		#footer {
-			border-top: solid 1px #CCC;
-			margin-top: 24px;
-			margin-bottom: 24px;
-			padding-top: 24px;				
-		}
-	</style>
+	
 </head>
 
 <body class="off-canvas">
-	<header id="header" class="row">
-		<div class="eight columns">
-			<h1>Long Password</h1>
-			<h4 class="subheader">one phrase. zero storage</h4>
+	<header>
+		<div class="row">
+			<div class="twelve columns">
+				<h1>Long Password</h1>
+				<h4>one phrase. zero storage</h4>
+			</div>
 		</div>
 	</header>
 
@@ -41,7 +35,18 @@
 		<div class="six columns">
 			<form class="custom">
 				<label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
-				<input type="text" id="longPhrase" class="twelve">
+				<div class="row">
+					<div class="twelve columns">
+						<div class="row collapse">
+							<div class="eleven mobile-three columns">
+								<input type="password" id="longPhrase">
+							</div>
+							<div class="one mobile-one columns">
+								<a class="button expand postfix"><i class="foundicon-eyeball" id="tooglePhrase" style="vertical-align:top"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>				
 				<div class="row" style="margin-bottom:12px;">
 					<div class="six columns">
 						<label for="username">Username (e.g. sluu99)</label>
@@ -82,18 +87,40 @@
 				This is a proof of concept. Algorithm is to change in the near future.
 			</p>
 			<p style="font-weight:600">
-				Never have to rely on another application to store you passwords again! 
-				Just remember a <em>meaningful phrase</em> and have a different secured password computed for every service you use.
+				Never need another application to store you passwords again! 
+				Just remember a <em>meaningful phrase</em> and have a different secure password computed for every service you use.
 			</p>
+			<ol>
+				<li>Compute a password.</li>
+				<li>Sign in to your service and select <em>&quot;Remember Me&quot;</em></li>
+				<li>Only come back here when you need it again.</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top:50px">
+		<div class="four columns">
+			<h3>Why?</h3>
+			<p style="text-align:justify">
+				This tool discourages the habit of using the same password for multiple online services
+				by providing an easier way to manage many different passwords.
+			</p>
+		</div>
+		<div class="four columns">
+			<h3>How?</h3>
+			<p style="text-align:justify">
+				By calculating a secure password based on a meaningful memorizable phrase for each service,
+				users won't have to remember the different passwords.
+			</p>
+		</div>
+		<div class="four columns">
+			<h3>Is it secure?</h3>
 			<p>
-				Simply compute a password, copy it for your first login and have the service remember your subsequent logins.
-				Because the password is <strong>computed</strong> and not <strike>randomly generated</strike>, it's always the same as long
-				as your passphrase and other input parameters do not change.
 			</p>
 		</div>
 	</div>
 
-	<footer id="footer" class="row">
+	<footer class="row">
 		<div class="seven columns">
 			Disclaimer: Please use at your own risk. <br> The author is not responsible for any loss you might face.
 		</div>
@@ -129,12 +156,25 @@
 			if (service.length == 0) $('#service').addClass('error');
 			else $('#service').removeClass('error');
 		}
-		
-		$('#longPhrase').keyup(calculatePw);
+
+		function toogleVisibility() {
+			var input = $('#longPhrase');
+			var rep;
+			if (input.attr('type') === 'password')
+				rep = $('<input id="longPhrase" type="text">');
+			else
+				rep = $('<input id="longPhrase" type="password">');
+			rep.val(input.val()).insertBefore(input);
+			input.remove();
+			input = rep;
+		}
+				
 		$('#username').keyup(calculatePw);
 		$('#service').keyup(calculatePw);
 		$('#length').change(calculatePw);
-		$('#allowSpecial').change(calculatePw);	
+		$('#allowSpecial').change(calculatePw);			
+		$('#longPhrase').keyup(calculatePw);
+		$('#tooglePhrase').click(toogleVisibility);
 	});
 	</script>
 
@@ -152,7 +192,7 @@
 
 	</script>
 
-	<a href="https://github.com/3fps/longpw" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+	<a href="https://github.com/3fps/longpw" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 </body>
 </html>
