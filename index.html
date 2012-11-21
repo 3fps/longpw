@@ -24,8 +24,7 @@
 			border-top: solid 1px #CCC;
 			margin-top: 24px;
 			margin-bottom: 24px;
-			padding-top: 24px;
-			text-align: right;	
+			padding-top: 24px;				
 		}
 	</style>
 </head>
@@ -43,8 +42,16 @@
 			<form class="custom">
 				<label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
 				<input type="text" id="longPhrase" class="twelve">
-				<label for="username">Username (e.g. sluu99@twitter)</label>
-				<input type="text" id="username" class="eight">			
+				<div class="row" style="margin-bottom:12px;">
+					<div class="six columns">
+						<label for="username">Username (e.g. sluu99)</label>
+						<input type="text" id="username">
+					</div>
+					<div class="six columns">
+						<label for="username">Service (e.g. twitter)</label>
+						<input type="text" id="service">
+					</div>
+				</div>				
 				<div class="row" style="margin-bottom:12px;">
 					<div class="six columns">
 						<label for="length">Password length</label>
@@ -87,8 +94,12 @@
 	</div>
 
 	<footer id="footer" class="row">
-		<a href="http://github.com/3fps">3FPS</a>. Feedback is welcome at <a href="http://twitter.com/sluu99">@sluu99</a>.
-
+		<div class="seven columns">
+			Disclaimer: Please use at your own risk. <br> The author is not responsible for any loss you might face.
+		</div>
+		<div class="five columns" style="text-align: right;">
+			<a href="http://github.com/3fps">3FPS</a>. Feedback is welcome at <a href="http://twitter.com/sluu99">@sluu99</a>.
+		</div>
 	</footer>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -103,22 +114,25 @@
 		function calculatePw() {
 			var longPhrase = $('#longPhrase').val();
 			var username = $('#username').val();
+			var service = $('#service').val();
 			var length = parseInt($('#length').val());
 			var allowSpecial = $('#allowSpecial').is(':checked');
 
 			if (longPhrase.length != 0) 
-				$('#password').val(calc(longPhrase, username, length, allowSpecial));
+				$('#password').val(calc(longPhrase, username, service, length, allowSpecial));
 
 			// flag UI elements
 			if (longPhrase.length < 20) $('#longPhrase').addClass('error');
 			else $('#longPhrase').removeClass('error');
-
 			if (username.length == 0) $('#username').addClass('error');
 			else $('#username').removeClass('error');
+			if (service.length == 0) $('#service').addClass('error');
+			else $('#service').removeClass('error');
 		}
 		
 		$('#longPhrase').keyup(calculatePw);
 		$('#username').keyup(calculatePw);
+		$('#service').keyup(calculatePw);
 		$('#length').change(calculatePw);
 		$('#allowSpecial').change(calculatePw);	
 	});

@@ -127,41 +127,28 @@ function binb2hex (binarray) {
 }
 
 // calc calculates passwords based on the long phrase, user name, and password length
-function calc(phrase, username, length, allowSpecial) {
+function calc(phrase, username, service, length, allowSpecial) {
 	
-	var upper   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	var lower   = 'abcdefghijklmnopqrstuvwxyz';
-	var digits  = '0123456789';
-	var special = './,[]{};:!@#$%^&*()';
-	
+	var tab = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789', './,[]{};:!@#$%^&*()'];
+	var maxTab = allowSpecial? 3 : 2;
+	var shaPad = username + service + length.toString() + allowSpecial.toString();	
+	var pass = phrase;	
+	var tabIndex = 0;
 	var pw = '';
-	var pass = phrase;
-	
+
 	while (pw.length < length) {
-		var sha = SHA256(pass + username + length.toString() + allowSpecial.toString());
-		for (i = 0; i < 8; i++)
-			sha[i] = Math.abs(sha[i]);
-					
-		pw += upper.charAt(sha[0] % upper.length);
-		pw += lower.charAt(sha[1] % lower.length);
-		pw += upper.charAt(sha[2] % upper.length);		
-		pw += lower.charAt(sha[3] % lower.length);
-		pw += digits.charAt(sha[4] % digits.length);
-		pw += digits.charAt(sha[5] % digits.length);
+
+		var sha = SHA256(pass + shaPad);
 		
-		if (allowSpecial) {
-			pw += special.charAt(sha[6] % special.length);
-			pw += special.charAt(sha[7] % special.length);	
-		} else {
-			if (length % 2 == 0) 
-				pw += lower.charAt(sha[6] % lower.length);
-			else
-				pw += upper.charAt(sha[6] % upper.length);
-			pw += digits.charAt(sha[7] % digits.length);
-		}
+		sha[0] ^= sha[1] ^ sha[2] ^ sha[3] ^ sha[4] ^ sha[5] ^ sha[6] ^ sha[7]
+		sha[0] = Math.abs(sha[0]);
+
+		pw += tab[tabIndex].charAt(sha[0] % tab[tabIndex].length);
+		tabIndex++;
+		if (tabIndex > maxTab) tabIndex = 0;
 		
 		pass += binb2hex(SHA256(pw));
 	}
 	
-	return pw.substring(0, length);
+	return pw;
 }
