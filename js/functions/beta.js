@@ -34,7 +34,7 @@ Beta.doCalc = function(phrase, length, allowSpecial, salt, tab, padding, pw, cal
         return;
     }
 
-    var bins = CryptoJS.PBKDF2(phrase + padding, salt, { keySize: 512/32 });
+    var bins = CryptoJS.PBKDF2(phrase + padding, salt, { keySize: 512/32, iterations: 10 });
     var words = bins.words;
     for (i = 1; i < words.length; i++)
         words[0] ^= words[i];
