@@ -1,4 +1,5 @@
 var calcTimer;
+var algoInput;
 var longPhraseInput;
 var usernameInput;
 var serviceInput;
@@ -7,6 +8,10 @@ var allowSpecialInput;
 var tooglePhraseInput;
 var passwordInput;
 var loaderImg;
+var algorithms = {
+    'alpha': Alpha,
+    'beta': Beta
+};
 
 function showPw(pw) {
     passwordInput.val(pw);
@@ -14,6 +19,7 @@ function showPw(pw) {
 }
 
 function calculatePw() {
+    var algo = algoInput.val();
     var longPhrase = longPhraseInput.val();
     var username = usernameInput.val();
     var service = serviceInput.val();
@@ -22,7 +28,7 @@ function calculatePw() {
 
     if (longPhrase.length != 0) {
         loaderImg.css('visibility', 'visible');
-        Alpha.calc(longPhrase, username, service, length, allowSpecial, showPw);
+        algorithms[algo].calc(longPhrase, username, service, length, allowSpecial, showPw);
     } else showPw('');
 
     // flag UI elements
@@ -52,6 +58,7 @@ function toogleVisibility() {
 }
 
 $(function() {
+    algoInput = $('#algorithm');
     longPhraseInput = $('#longPhrase');
     tooglePhraseInput = $('#tooglePhrase');
     usernameInput = $('#username');
@@ -61,6 +68,7 @@ $(function() {
     passwordInput = $('#password');
     loaderImg = $('#loaderGif');
 
+    algoInput.change(scheduleCalc);
     longPhraseInput.keyup(scheduleCalc);
     tooglePhraseInput.change(toogleVisibility);
     usernameInput.keyup(scheduleCalc);
