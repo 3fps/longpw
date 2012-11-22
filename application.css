@@ -1,6 +1,6 @@
-header {			
+header {
 	margin-bottom: 24px;
-	background-color: #2BA6CB;			
+	background-color: #2BA6CB;
 }
 header, h1, h4 { color: white; }
 h1, h2, h3, h4 {
@@ -8,12 +8,17 @@ h1, h2, h3, h4 {
 }
 h1 { font-weight: 500; }
 h4 { font-weight: 300; }
+h5 { color: #2BA6CB;}
 footer {
 	border-top: solid 1px #CCC;
 	margin-top: 24px;
 	margin-bottom: 24px;
-	padding-top: 24px;				
+	padding-top: 24px;
 }
 #password {
 	font-family: Consolas, "Monaco", "Courier New", Courier, monospace;
+}
+
+.spacer {
+    height: 12px;
 }
