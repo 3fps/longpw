@@ -36,7 +36,7 @@ function calculatePw() {
 
 function scheduleCalc() {
     clearTimeout(calcTimer);
-    calcTimer = setTimeout(calculatePw, 100);
+    calcTimer = setTimeout(calculatePw, 200);
 }
 
 function toogleVisibility() {
