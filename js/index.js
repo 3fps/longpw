@@ -48,7 +48,7 @@ function toogleVisibility() {
         rep = $('<input id="longPhrase" type="password">');
     rep.val(input.val()).keyup(scheduleCalc).insertBefore(input);
     input.remove();
-    input = rep;
+    longPhraseInput = rep;
 }
 
 $(function() {
