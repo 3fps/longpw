@@ -1,39 +1,72 @@
-$(function() {        
-    function calculatePw() {
-        var longPhrase = $('#longPhrase').val();
-        var username = $('#username').val();
-        var service = $('#service').val();
-        var length = parseInt($('#length').val());
-        var allowSpecial = $('#allowSpecial').is(':checked');
+var calcTimer;
+var longPhraseInput;
+var usernameInput;
+var serviceInput;
+var lengthInput;
+var allowSpecialInput;
+var tooglePhraseInput;
+var passwordInput;
+var loaderImg;
 
-        if (longPhrase.length != 0) 
-            $('#password').val(alpha(longPhrase, username, service, length, allowSpecial));
+function showPw(pw) {
+    passwordInput.val(pw);
+    loaderImg.css('visibility', 'hidden');
+}
 
-        // flag UI elements
-        if (longPhrase.length < 20) $('#longPhrase').addClass('error');
-        else $('#longPhrase').removeClass('error');
-        if (username.length == 0) $('#username').addClass('error');
-        else $('#username').removeClass('error');
-        if (service.length == 0) $('#service').addClass('error');
-        else $('#service').removeClass('error');
-    }
+function calculatePw() {
+    var longPhrase = longPhraseInput.val();
+    var username = usernameInput.val();
+    var service = serviceInput.val();
+    var length = parseInt(lengthInput.val());
+    var allowSpecial = allowSpecialInput.is(':checked');
 
-    function toogleVisibility() {
-        var input = $('#longPhrase');
-        var rep;
-        if ($('#tooglePhrase').is(':checked'))
-            rep = $('<input id="longPhrase" type="text">');
-        else
-            rep = $('<input id="longPhrase" type="password">');
-        rep.val(input.val()).keyup(calculatePw).insertBefore(input);
-        input.remove();
-        input = rep;
-    }
-            
-    $('#username').keyup(calculatePw);
-    $('#service').keyup(calculatePw);
-    $('#length').change(calculatePw);
-    $('#allowSpecial').change(calculatePw);         
-    $('#longPhrase').keyup(calculatePw);
-    $('#tooglePhrase').change(toogleVisibility);
+    if (longPhrase.length != 0) {
+        loaderImg.css('visibility', 'visible');
+        Alpha.calc(longPhrase, username, service, length, allowSpecial, showPw);
+    } else showPw('');
+
+    // flag UI elements
+    if (longPhrase.length < 20) longPhraseInput.addClass('error');
+    else longPhraseInput.removeClass('error');
+    if (username.length == 0) usernameInput.addClass('error');
+    else usernameInput.removeClass('error');
+    if (service.length == 0) serviceInput.addClass('error');
+    else serviceInput.removeClass('error');
+}
+
+function scheduleCalc() {
+    clearTimeout(calcTimer);
+    calcTimer = setTimeout(calculatePw, 75);
+}
+
+function toogleVisibility() {
+    var input = longPhraseInput;
+    var rep;
+    if (tooglePhraseInput.is(':checked'))
+        rep = $('<input id="longPhrase" type="text">');
+    else
+        rep = $('<input id="longPhrase" type="password">');
+    rep.val(input.val()).keyup(scheduleCalc).insertBefore(input);
+    input.remove();
+    input = rep;
+}
+
+$(function() {
+    longPhraseInput = $('#longPhrase');
+    tooglePhraseInput = $('#tooglePhrase');
+    usernameInput = $('#username');
+    serviceInput = $('#service');
+    lengthInput = $('#length');
+    allowSpecialInput = $('#allowSpecial');
+    passwordInput = $('#password');
+    loaderImg = $('#loaderGif');
+
+    longPhraseInput.keyup(scheduleCalc);
+    tooglePhraseInput.change(toogleVisibility);
+    usernameInput.keyup(scheduleCalc);
+    serviceInput.keyup(scheduleCalc);
+    lengthInput.change(scheduleCalc);
+    allowSpecialInput.change(scheduleCalc);
+
+    longPhraseInput.focus();
 });

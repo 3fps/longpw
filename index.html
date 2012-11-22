@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <title>Long Password</title>
-    
+
     <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
     <link rel="stylesheet" href="foundation/stylesheets/app.css">
     <link rel="stylesheet" href="foundation/stylesheets/accessibility_foundicons.css">
@@ -18,7 +18,7 @@
 
     <script src="foundation/javascripts/modernizr.foundation.js"></script>
 
-    
+
 </head>
 
 <body class="off-canvas">
@@ -31,19 +31,19 @@
         </div>
     </header>
 
-    <div class="row">       
+    <div class="row">
         <div class="six columns">
-            <form>               
+            <form>
+                <label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
                 <div class="row">
                     <div class="ten columns">
-                        <label for="longPhrase">Meaningful phrase (recommend at least 20 characters)</label>
-                        <input type="password" id="longPhrase">                     
+                        <input type="password" id="longPhrase">
                     </div>
                     <div class="two columns">
-                        <label for="tooglePhrase">Visible</label>
                         <input type="checkbox" id="tooglePhrase">
+                        <label for="tooglePhrase" style="font-size:10px">Visible</label>
                     </div>
-                </div>              
+                </div>
                 <div class="row">
                     <div class="six columns">
                         <label for="username">Username (e.g. sluu99)</label>
@@ -53,7 +53,7 @@
                         <label for="username">Service (e.g. twitter)</label>
                         <input type="text" id="service">
                     </div>
-                </div>              
+                </div>
                 <div class="row" style="margin-bottom:12px;">
                     <div class="six columns">
                         <label for="length">Password length</label>
@@ -75,7 +75,15 @@
                     </div>
                 </div>
                 <label>Your password</label>
-                <input type="text" id="password" class="eight" onclick="javascript:this.select();">
+                <div class="row">
+                    <div class="eight columns">
+                        <input type="text" id="password" onclick="javascript:this.select();">
+                    </div>
+                    <div class="one columns" style="padding-top: 7px">
+                        <img src="ajax-loader.gif" border="0" id="loaderGif" style="visibility:hidden">
+                    </div>
+                    <div class="three columns">&nbsp;</div>
+                </div>
             </form>
         </div>
 
@@ -84,7 +92,7 @@
                 This is a proof of concept. Algorithm is subject to change in the near future.
             </p>
             <p style="font-weight:600">
-                Never need another application to store you passwords again! 
+                Never need another application to store you passwords again!
                 Just remember a <em>meaningful phrase</em> and have a different secure password computed for every service you use.
             </p>
             <ol>
@@ -128,14 +136,14 @@
         </div>
     </footer>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="foundation/javascripts/foundation.min.js"></script>    
-    <script src="foundation/javascripts/app.js"></script>
-
-    <script src="js/sha256.js"></script>
+    <script src="//crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/sha512.js"></script>
     <script src="js/functions/alpha.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="foundation/javascripts/foundation.min.js"></script>
+    <script src="foundation/javascripts/app.js"></script>
     <script src="js/index.js"></script>
-    
+
     <script>
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-519963-18']);
